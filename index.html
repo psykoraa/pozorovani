@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pozorování noční oblohy</title>
+  <meta name="description" content="Pozvánka na veřejné pozorování noční oblohy dalekohledy – kdy, kde, co uvidíme a přihlášení.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230b1026'/%3E%3Cpath d='M16 5l2.6 7.8H27l-6.8 4.9 2.6 7.9L16 20.7l-6.8 4.9 2.6-7.9L5 12.8h8.4z' fill='%23f5c46b'/%3E%3C/svg%3E">
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a href="#" class="brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      Pozorování oblohy
+    </a>
+    <nav>
+      <a href="#kdy">Kdy</a>
+      <a href="#kde">Kde</a>
+      <a href="#co">Co uvidíme</a>
+      <a href="#prihlaska" class="nav-cta">Přihlásit se</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ ÚVOD ============ -->
+    <section class="hero">
+      <p class="eyebrow">Večer pod hvězdami</p>
+      <h1>Pozorování<br><em>noční oblohy</em></h1>
+      <p class="lead">
+        Přijďte se s námi podívat dalekohledy na prstence Saturnu, měsíce Jupiteru,
+        krátery na Měsíci i vzdálené galaxie. Akce je otevřená všem – žákům, rodičům
+        i&nbsp;veřejnosti. Vstup zdarma.
+      </p>
+
+      <!-- Datum a čas akce pro odpočet – UPRAVTE (formát RRRR-MM-DDTHH:MM) -->
+      <div class="countdown" id="countdown" data-start="2026-11-13T19:00">
+        <div><span id="cd-days">–</span><small>dní</small></div>
+        <div><span id="cd-hours">–</span><small>hodin</small></div>
+        <div><span id="cd-mins">–</span><small>minut</small></div>
+        <div><span id="cd-secs">–</span><small>sekund</small></div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#prihlaska" class="btn btn-primary">Mám zájem</a>
+        <a href="#co" class="btn btn-ghost">Co uvidíme?</a>
+      </div>
+    </section>
+
+    <!-- ============ KDY ============ -->
+    <section id="kdy" class="section">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>Kdy</h2>
+      </div>
+
+      <div class="grid two">
+        <article class="card highlight">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          </div>
+          <h3>Hlavní termín</h3>
+          <!-- UPRAVTE datum a čas -->
+          <p class="big">Pátek 13. listopadu 2026</p>
+          <p class="muted">od 19:00 přibližně do 21:30</p>
+          <p>Přijít můžete kdykoli během večera, pozorování průběžně pokračuje.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 10a4 4 0 0 1-1 7.9z"/><path d="M8 21l1-2M12 21l1-2M16 21l1-2"/></svg>
+          </div>
+          <h3>Náhradní termín</h3>
+          <!-- UPRAVTE náhradní termín -->
+          <p class="big">Pátek 20. listopadu 2026</p>
+          <p class="muted">od 19:00</p>
+          <p>Pozorování závisí na počasí. Při zatažené obloze akci přesuneme –
+             o konání rozhodneme v den akce do 15:00 a informaci zveřejníme zde
+             a pošleme přihlášeným e-mailem.</p>
+        </article>
+      </div>
+
+      <ol class="timeline">
+        <li><time>19:00</time><span>Přivítání a krátká úvodní přednáška o podzimní obloze</span></li>
+        <li><time>19:20</time><span>Orientace na obloze – souhvězdí pouhým okem</span></li>
+        <li><time>19:40</time><span>Pozorování dalekohledy na jednotlivých stanovištích</span></li>
+        <li><time>21:30</time><span>Předpokládaný konec (při jasné obloze klidně déle)</span></li>
+      </ol>
+    </section>
+
+    <!-- ============ KDE ============ -->
+    <section id="kde" class="section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>Kde</h2>
+      </div>
+
+      <div class="grid two">
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </div>
+          <h3>Místo konání</h3>
+          <!-- UPRAVTE místo -->
+          <p class="big">Školní hřiště gymnázia</p>
+          <p class="muted">sraz u hlavního vchodu do budovy školy</p>
+          <p>Místo jsme zvolili kvůli dobrému výhledu na jižní a západní oblohu
+             a menšímu světelnému znečištění.</p>
+          <!-- UPRAVTE odkaz na mapu (např. z mapy.cz nebo Google Maps) -->
+          <a class="link-arrow" href="https://mapy.cz" target="_blank" rel="noopener">Otevřít v mapě →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 4H8z"/><path d="M6 7h12v3a6 6 0 0 1-12 0z"/><path d="M12 16v5M8 21h8"/></svg>
+          </div>
+          <h3>Co si vzít s sebou</h3>
+          <ul class="checklist">
+            <li>Teplé oblečení, čepici a rukavice – v noci se rychle ochladí</li>
+            <li>Termosku s teplým čajem</li>
+            <li>Baterku s červeným světlem (nebo překrytou červenou fólií)</li>
+            <li>Vlastní dalekohled či triedr, pokud máte – rádi poradíme</li>
+            <li>Mobil s aplikací mapy oblohy (např. Stellarium)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CO UVIDÍME ============ -->
+    <section id="co" class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>Co půjde pozorovat</h2>
+      </div>
+      <p class="section-intro">
+        Podzimní večerní obloha nabízí planety, hvězdokupy i nejbližší velkou galaxii.
+        Konkrétní program přizpůsobíme aktuálním podmínkám.
+      </p>
+
+      <!-- UPRAVTE seznam objektů podle aktuální oblohy -->
+      <div class="grid objects">
+        <article class="object">
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <ellipse cx="60" cy="40" rx="52" ry="12" fill="none" stroke="#e8cf9a" stroke-width="3" opacity=".75"/>
+            <circle cx="60" cy="40" r="22" fill="url(#gSat)"/>
+            <path d="M8 40a52 12 0 0 0 104 0" fill="none" stroke="#f3dca8" stroke-width="3"/>
+            <defs><radialGradient id="gSat" cx="40%" cy="35%"><stop offset="0" stop-color="#fbe7b5"/><stop offset="1" stop-color="#b98a45"/></radialGradient></defs>
+          </svg>
+          <h3>Saturn</h3>
+          <p class="tag">planeta</p>
+          <p>Prstence uvidíte i malým dalekohledem. Zkusíme najít i jeho největší měsíc Titan.</p>
+        </article>
+
+        <article class="object">
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <defs><linearGradient id="gJup" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e9d2b0"/><stop offset=".3" stop-color="#c49a6c"/>
+              <stop offset=".45" stop-color="#efdcc0"/><stop offset=".6" stop-color="#b9875a"/>
+              <stop offset="1" stop-color="#e3c9a3"/></linearGradient></defs>
+            <circle cx="60" cy="40" r="24" fill="url(#gJup)"/>
+            <circle cx="14" cy="40" r="2" fill="#fff"/><circle cx="26" cy="41" r="1.6" fill="#fff"/>
+            <circle cx="98" cy="39" r="2" fill="#fff"/><circle cx="109" cy="40" r="1.6" fill="#fff"/>
+          </svg>
+          <h3>Jupiter</h3>
+          <p class="tag">planeta</p>
+          <p>Oblačné pásy a čtyři Galileovy měsíce, které mění polohu doslova z hodiny na hodinu.</p>
+        </article>
+
+        <article class="object">
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <defs><radialGradient id="gMoon" cx="40%" cy="40%"><stop offset="0" stop-color="#f4f1e8"/><stop offset="1" stop-color="#a9a597"/></radialGradient></defs>
+            <circle cx="60" cy="40" r="28" fill="url(#gMoon)"/>
+            <circle cx="50" cy="32" r="5" fill="#8f8b7f" opacity=".5"/>
+            <circle cx="68" cy="50" r="7" fill="#8f8b7f" opacity=".45"/>
+            <circle cx="70" cy="28" r="3" fill="#8f8b7f" opacity=".5"/>
+            <path d="M60 12a28 28 0 0 1 0 56a20 28 0 0 0 0-56z" fill="#0b1026" opacity=".55"/>
+          </svg>
+          <h3>Měsíc</h3>
+          <p class="tag">přirozená družice</p>
+          <p>Krátery, pohoří a moře podél hranice světla a stínu – terminátoru – vypadají nejplastičtěji.</p>
+        </article>
+
+        <article class="object">
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <defs><radialGradient id="gAnd" cx="50%" cy="50%"><stop offset="0" stop-color="#fff6e0"/><stop offset=".25" stop-color="#d8c7f0" stop-opacity=".8"/><stop offset="1" stop-color="#6b5aa8" stop-opacity="0"/></radialGradient></defs>
+            <ellipse cx="60" cy="40" rx="50" ry="14" fill="url(#gAnd)" transform="rotate(-18 60 40)"/>
+            <circle cx="60" cy="40" r="4" fill="#fffaf0"/>
+          </svg>
+          <h3>Galaxie v Andromedě</h3>
+          <p class="tag">galaxie M31</p>
+          <p>Nejvzdálenější objekt viditelný pouhým okem – světlo od ní k nám letí asi 2,5 milionu let.</p>
+        </article>
+
+        <article class="object">
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <g fill="#cfe0ff">
+              <circle cx="40" cy="30" r="3.2"/><circle cx="55" cy="22" r="2.6"/><circle cx="68" cy="34" r="3.6"/>
+              <circle cx="52" cy="44" r="2.8"/><circle cx="80" cy="46" r="2.4"/><circle cx="62" cy="56" r="2.2"/>
+              <circle cx="88" cy="28" r="1.8"/><circle cx="34" cy="50" r="1.6"/>
+            </g>
+            <ellipse cx="60" cy="40" rx="40" ry="26" fill="#7fa6ff" opacity=".12"/>
+          </svg>
+          <h3>Plejády</h3>
+          <p class="tag">otevřená hvězdokupa M45</p>
+          <p>„Kuřátka“ – třpytivá skupina mladých modrých hvězd, krásná už v triedru.</p>
+        </article>
+
+        <article class="object">
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <g stroke="#f5c46b" stroke-width="1" opacity=".55">
+              <line x1="22" y1="22" x2="44" y2="34"/><line x1="44" y1="34" x2="64" y2="26"/>
+              <line x1="64" y1="26" x2="80" y2="44"/><line x1="80" y1="44" x2="100" y2="38"/>
+              <line x1="64" y1="26" x2="70" y2="60"/>
+            </g>
+            <g fill="#fff">
+              <circle cx="22" cy="22" r="2.4"/><circle cx="44" cy="34" r="2"/><circle cx="64" cy="26" r="2.8"/>
+              <circle cx="80" cy="44" r="2.2"/><circle cx="100" cy="38" r="2"/><circle cx="70" cy="60" r="1.8"/>
+            </g>
+          </svg>
+          <h3>Souhvězdí</h3>
+          <p class="tag">pouhým okem</p>
+          <p>Kasiopeja, Pegas, Labuť a Letní trojúhelník – naučíme vás orientovat se na obloze.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ FORMULÁŘ ============ -->
+    <section id="prihlaska" class="section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2>Máte zájem?</h2>
+      </div>
+      <p class="section-intro">
+        Vyplňte prosím krátký formulář. Pomůže nám odhadnout počet účastníků,
+        připravit dostatek dalekohledů a dát vám vědět, kdyby se akce kvůli
+        počasí přesouvala.
+      </p>
+
+      <form id="interest-form" class="form card" novalidate>
+        <div class="field-row">
+          <label class="field">
+            <span>Jméno a příjmení *</span>
+            <input type="text" name="jmeno" required autocomplete="name" placeholder="Jan Novák">
+          </label>
+          <label class="field">
+            <span>E-mail *</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="jan.novak@email.cz">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label class="field">
+            <span>Jsem</span>
+            <select name="ucastnik">
+              <option>žák / studentka školy</option>
+              <option>rodič</option>
+              <option>učitel / učitelka</option>
+              <option>veřejnost</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Počet osob (včetně vás) *</span>
+            <input type="number" name="pocet" min="1" max="20" value="1" required>
+          </label>
+        </div>
+
+        <fieldset class="field">
+          <legend>Kterým termínům dáváte přednost?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="termin" value="hlavní termín" checked><span>Hlavní termín</span></label>
+            <label class="chip"><input type="radio" name="termin" value="náhradní termín"><span>Náhradní termín</span></label>
+            <label class="chip"><input type="radio" name="termin" value="oba termíny"><span>Mohu oba</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Na co se nejvíc těšíte?</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="zajem" value="Saturn"><span>Saturn</span></label>
+            <label class="chip"><input type="checkbox" name="zajem" value="Jupiter"><span>Jupiter</span></label>
+            <label class="chip"><input type="checkbox" name="zajem" value="Měsíc"><span>Měsíc</span></label>
+            <label class="chip"><input type="checkbox" name="zajem" value="Galaxie v Andromedě"><span>Galaxie v Andromedě</span></label>
+            <label class="chip"><input type="checkbox" name="zajem" value="Plejády"><span>Plejády</span></label>
+            <label class="chip"><input type="checkbox" name="zajem" value="Souhvězdí"><span>Souhvězdí</span></label>
+          </div>
+        </fieldset>
+
+        <label class="toggle">
+          <input type="checkbox" name="vlastni_dalekohled" value="ano">
+          <span class="toggle-ui"></span>
+          <span>Přinesu vlastní dalekohled nebo triedr</span>
+        </label>
+
+        <label class="field">
+          <span>Dotaz nebo poznámka</span>
+          <textarea name="poznamka" rows="3" placeholder="Např. otázka, kterou byste rádi probrali…"></textarea>
+        </label>
+
+        <label class="toggle">
+          <input type="checkbox" name="souhlas" required>
+          <span class="toggle-ui"></span>
+          <span>Souhlasím se zpracováním jména a e-mailu pro účely organizace této akce. *</span>
+        </label>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-wide">Odeslat přihlášku</button>
+      </form>
+
+      <div class="card success" id="form-success" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.9L22 9.5l-5.5 4.8 1.7 7.2L12 17.8 5.8 21.5l1.7-7.2L2 9.5l7.1-.6z"/></svg>
+        <h3>Děkujeme, máme vás!</h3>
+        <p>Těšíme se na společný večer pod hvězdami. Kdyby se akce kvůli počasí přesouvala, dáme vám vědět.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>„Dvě věci naplňují mysl stále novým a rostoucím obdivem: hvězdné nebe nade mnou a mravní zákon ve mně.“ <span>— Immanuel Kant</span></p>
+    <!-- UPRAVTE kontakt na pořadatele -->
+    <p class="muted">Pořádá: Gymnázium · Kontakt: <a href="mailto:pozorovani@example.cz">pozorovani@example.cz</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
