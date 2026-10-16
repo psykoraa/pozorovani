@@ -5,7 +5,7 @@
    Postup nastavení je v souboru NAVOD-GOOGLE-TABULKY.md.
    Sem vložte adresu webové aplikace (končí na /exec).
    ===================================================================== */
-const GOOGLE_SCRIPT_URL = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyppeSSbkUIYw2ouQdHnhjifaRa45CTwq9RVNMiPiznEImGiLICPjwlFgQYyEErVFHn/exec";
 
 /* ---------- Hvězdná obloha (canvas) ---------- */
 (() => {
