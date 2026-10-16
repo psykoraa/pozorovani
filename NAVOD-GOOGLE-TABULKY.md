@@ -41,7 +41,10 @@ Třída, Počet osob, Poznámka*.
 
 ## Tipy
 
-- **Kontrola:** otevřete URL `/exec` v prohlížeči – má se zobrazit „Funguje“.
+- **Kontrola:** otevřete URL `/exec` v prohlížeči – má se zobrazit „Funguje – tabulka …,
+  uložených přihlášek: …“. Pokud se zobrazí „CHYBA: …“, hláška říká, co je špatně.
+- **Skript vytvořený mimo tabulku** (přímo na script.google.com): vyplňte v něm
+  `SPREADSHEET_ID` – je to část adresy tabulky mezi `/d/` a `/edit`.
 - **Upozornění e-mailem na novou přihlášku:** v tabulce *Nástroje → Pravidla upozornění*.
 - **Úprava skriptu později:** po změně kódu je potřeba *Nasadit → Spravovat nasazení →
   upravit (tužka) → Verze: Nová verze → Nasadit*. Adresa `/exec` zůstane stejná.

@@ -7,6 +7,11 @@
  */
 
 const SHEET_NAME = "Přihlášky";
+
+// Vyplňte jen tehdy, když skript NENÍ vytvořený přes Rozšíření → Apps Script
+// přímo v tabulce. ID je část adresy tabulky mezi /d/ a /edit.
+const SPREADSHEET_ID = "";
+
 const COLUMNS = [
   ["cas", "Čas přihlášení"],
   ["jmeno", "Jméno a příjmení"],
@@ -27,18 +32,37 @@ function doPost(e) {
     );
     sheet.appendRow(row);
     return ContentService.createTextOutput("OK");
+  } catch (err) {
+    console.error(err);
+    return ContentService.createTextOutput("CHYBA: " + err.message);
   } finally {
     lock.releaseLock();
   }
 }
 
-// Kontrola v prohlížeči: otevřete adresu /exec a mělo by se zobrazit „Funguje“.
+// Kontrola v prohlížeči: otevřete adresu /exec. Ukáže, zda se skript dostane do tabulky.
 function doGet() {
-  return ContentService.createTextOutput("Funguje – přihlášky se ukládají do listu „" + SHEET_NAME + "“.");
+  try {
+    const sheet = getSheet_();
+    return ContentService.createTextOutput(
+      "Funguje – tabulka „" + sheet.getParent().getName() + "“, list „" + SHEET_NAME +
+      "“, uložených přihlášek: " + Math.max(sheet.getLastRow() - 1, 0)
+    );
+  } catch (err) {
+    return ContentService.createTextOutput("CHYBA: " + err.message);
+  }
 }
 
 function getSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SPREADSHEET_ID
+    ? SpreadsheetApp.openById(SPREADSHEET_ID)
+    : SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    throw new Error(
+      "Skript není propojený s tabulkou. Vytvořte ho přes Rozšíření → Apps Script " +
+      "v tabulce, nebo vyplňte SPREADSHEET_ID."
+    );
+  }
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) sheet = ss.insertSheet(SHEET_NAME);
   if (sheet.getLastRow() === 0) {
