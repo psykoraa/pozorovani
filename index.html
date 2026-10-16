@@ -251,46 +251,14 @@
 
         <div class="field-row">
           <label class="field">
-            <span>Jsem</span>
-            <select name="ucastnik">
-              <option>žák / studentka školy</option>
-              <option>rodič</option>
-              <option>učitel / učitelka</option>
-              <option>veřejnost</option>
-            </select>
+            <span>Třída</span>
+            <input type="text" name="trida" placeholder="např. 3.A">
           </label>
           <label class="field">
             <span>Počet osob (včetně vás) *</span>
             <input type="number" name="pocet" min="1" max="20" value="1" required>
           </label>
         </div>
-
-        <fieldset class="field">
-          <legend>Kterým termínům dáváte přednost?</legend>
-          <div class="chips">
-            <label class="chip"><input type="radio" name="termin" value="hlavní termín" checked><span>Hlavní termín</span></label>
-            <label class="chip"><input type="radio" name="termin" value="náhradní termín"><span>Náhradní termín</span></label>
-            <label class="chip"><input type="radio" name="termin" value="oba termíny"><span>Mohu oba</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="field">
-          <legend>Na co se nejvíc těšíte?</legend>
-          <div class="chips">
-            <label class="chip"><input type="checkbox" name="zajem" value="Saturn"><span>Saturn</span></label>
-            <label class="chip"><input type="checkbox" name="zajem" value="Jupiter"><span>Jupiter</span></label>
-            <label class="chip"><input type="checkbox" name="zajem" value="Měsíc"><span>Měsíc</span></label>
-            <label class="chip"><input type="checkbox" name="zajem" value="Galaxie v Andromedě"><span>Galaxie v Andromedě</span></label>
-            <label class="chip"><input type="checkbox" name="zajem" value="Plejády"><span>Plejády</span></label>
-            <label class="chip"><input type="checkbox" name="zajem" value="Souhvězdí"><span>Souhvězdí</span></label>
-          </div>
-        </fieldset>
-
-        <label class="toggle">
-          <input type="checkbox" name="vlastni_dalekohled" value="ano">
-          <span class="toggle-ui"></span>
-          <span>Přinesu vlastní dalekohled nebo triedr</span>
-        </label>
 
         <label class="field">
           <span>Dotaz nebo poznámka</span>
