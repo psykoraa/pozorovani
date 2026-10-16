@@ -1,16 +1,11 @@
 /* =====================================================================
    NASTAVENÍ FORMULÁŘE – UPRAVTE
    ---------------------------------------------------------------------
-   Statická stránka (např. GitHub Pages) neumí sama ukládat odpovědi.
-   Možnosti:
-   1) Služba Formspree (zdarma): na https://formspree.io si založte formulář
-      a jeho adresu (např. "https://formspree.io/f/abcdwxyz") vložte do
-      FORM_ENDPOINT. Odpovědi pak chodí na váš e-mail.
-   2) Pokud FORM_ENDPOINT necháte prázdný, po odeslání se návštěvníkovi
-      otevře e-mailový klient s předvyplněnou zprávou na CONTACT_EMAIL.
+   Přihlášky se ukládají do Google tabulky přes Google Apps Script.
+   Postup nastavení je v souboru NAVOD-GOOGLE-TABULKY.md.
+   Sem vložte adresu webové aplikace (končí na /exec).
    ===================================================================== */
-const FORM_ENDPOINT = "";
-const CONTACT_EMAIL = "pozorovani@example.cz";
+const GOOGLE_SCRIPT_URL = "";
 
 /* ---------- Hvězdná obloha (canvas) ---------- */
 (() => {
@@ -124,12 +119,11 @@ const CONTACT_EMAIL = "pozorovani@example.cz";
 
   function validate() {
     let ok = true;
-    form.querySelectorAll(".invalid, .invalid-toggle").forEach((el) => el.classList.remove("invalid", "invalid-toggle"));
+    form.querySelectorAll(".invalid").forEach((el) => el.classList.remove("invalid"));
     for (const input of form.querySelectorAll("[required]")) {
       if (!input.checkValidity()) {
         ok = false;
-        if (input.type === "checkbox") input.closest(".toggle").classList.add("invalid-toggle");
-        else input.classList.add("invalid");
+        input.classList.add("invalid");
       }
     }
     return ok;
@@ -160,18 +154,9 @@ const CONTACT_EMAIL = "pozorovani@example.cz";
       errorBox.hidden = false;
       return;
     }
-    const data = collect();
-
-    if (!FORM_ENDPOINT) {
-      const body = [
-        `Jméno: ${data.jmeno}`,
-        `E-mail: ${data.email}`,
-        `Třída: ${data.trida}`,
-        `Počet osob: ${data.pocet}`,
-        `Poznámka: ${data.poznamka}`,
-      ].join("\n");
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Přihláška – pozorování oblohy")}&body=${encodeURIComponent(body)}`;
-      showSuccess();
+    if (!GOOGLE_SCRIPT_URL) {
+      errorBox.textContent = "Přihlašování zatím není spuštěné. Zkuste to prosím později.";
+      errorBox.hidden = false;
       return;
     }
 
@@ -179,15 +164,16 @@ const CONTACT_EMAIL = "pozorovani@example.cz";
     btn.disabled = true;
     btn.textContent = "Odesílám…";
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      // Google Apps Script nepovoluje CORS, proto režim "no-cors":
+      // odpověď nelze přečíst, ale data se do tabulky zapíší.
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
+        mode: "no-cors",
+        body: new URLSearchParams(collect()),
       });
-      if (!res.ok) throw new Error(res.status);
       showSuccess();
     } catch {
-      errorBox.textContent = "Odeslání se nepodařilo. Zkuste to prosím znovu, nebo nám napište e-mail.";
+      errorBox.textContent = "Odeslání se nepodařilo. Zkontrolujte připojení k internetu a zkuste to znovu.";
       errorBox.hidden = false;
       btn.disabled = false;
       btn.textContent = "Odeslat přihlášku";
