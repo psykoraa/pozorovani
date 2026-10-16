@@ -140,11 +140,8 @@ const CONTACT_EMAIL = "pozorovani@example.cz";
     return {
       jmeno: fd.get("jmeno"),
       email: fd.get("email"),
-      ucastnik: fd.get("ucastnik"),
+      trida: fd.get("trida") || "—",
       pocet: fd.get("pocet"),
-      termin: fd.get("termin"),
-      zajem: fd.getAll("zajem").join(", ") || "—",
-      vlastni_dalekohled: fd.get("vlastni_dalekohled") ? "ano" : "ne",
       poznamka: fd.get("poznamka") || "—",
     };
   }
@@ -169,11 +166,8 @@ const CONTACT_EMAIL = "pozorovani@example.cz";
       const body = [
         `Jméno: ${data.jmeno}`,
         `E-mail: ${data.email}`,
-        `Účastník: ${data.ucastnik}`,
+        `Třída: ${data.trida}`,
         `Počet osob: ${data.pocet}`,
-        `Termín: ${data.termin}`,
-        `Zájem: ${data.zajem}`,
-        `Vlastní dalekohled: ${data.vlastni_dalekohled}`,
         `Poznámka: ${data.poznamka}`,
       ].join("\n");
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Přihláška – pozorování oblohy")}&body=${encodeURIComponent(body)}`;
