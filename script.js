@@ -166,14 +166,22 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyppeSSbkUIYw
     try {
       // Google Apps Script nepovoluje CORS, proto režim "no-cors":
       // odpověď nelze přečíst, ale data se do tabulky zapíší.
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: new URLSearchParams(collect()),
-      });
+      // Když Google do 20 s neodpoví, odeslání přerušíme a ukážeme chybu.
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 20000);
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: new URLSearchParams(collect()),
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(timer);
+      }
       showSuccess();
     } catch {
-      errorBox.textContent = "Odeslání se nepodařilo. Zkontrolujte připojení k internetu a zkuste to znovu.";
+      errorBox.textContent = "Odeslání se nepodařilo (server neodpověděl). Zkuste to prosím znovu za chvíli.";
       errorBox.hidden = false;
       btn.disabled = false;
       btn.textContent = "Odeslat přihlášku";
