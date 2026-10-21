@@ -165,20 +165,20 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyppeSSbkUIYw
     btn.textContent = "Odesílám…";
     try {
       // Google Apps Script nepovoluje CORS, proto režim "no-cors":
-      // odpověď nelze přečíst, ale data se do tabulky zapíší.
-      // Když Google do 20 s neodpoví, odeslání přerušíme a ukážeme chybu.
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 20000);
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          body: new URLSearchParams(collect()),
-          signal: controller.signal,
-        });
-      } finally {
-        clearTimeout(timer);
-      }
+      // odpověď nelze přečíst, ale data se do tabulky zapíší. Odpověď od Googlu
+      // chodí pomalu, proto na ni nečekáme déle než chvíli: když požadavek
+      // neselže hned (např. kvůli chybějícímu připojení), ukážeme poděkování
+      // a odeslání dobíhá na pozadí (keepalive).
+      const request = fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        keepalive: true,
+        body: new URLSearchParams(collect()),
+      });
+      await Promise.race([
+        request,
+        new Promise((resolve) => setTimeout(resolve, 1500)),
+      ]);
       showSuccess();
     } catch {
       errorBox.textContent = "Odeslání se nepodařilo (server neodpověděl). Zkuste to prosím znovu za chvíli.";
