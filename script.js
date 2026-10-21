@@ -89,7 +89,7 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyppeSSbkUIYw
     if (isNaN(diff)) return;
     if (diff <= 0) {
       el.classList.add("done");
-      el.textContent = diff > -4 * 3600e3 ? "Právě pozorujeme!" : "Akce již proběhla – děkujeme všem!";
+      el.textContent = diff > -4 * 3600e3 ? "Právě pozorujeme!" : "Akce již proběhla – děkuji všem!";
       return;
     }
     parts.d.textContent = Math.floor(diff / 864e5);
