@@ -223,7 +223,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; marg
 .object p:last-child { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
 /* ===== Formulář ===== */
-.form { display: grid; gap: 1.3rem; max-width: 760px; }
+.form { display: grid; gap: 1.3rem; }
 .field-row { display: grid; gap: 1.3rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .field { display: grid; gap: 0.45rem; border: 0; padding: 0; margin: 0; min-width: 0; }
 .field > span, .field legend { font-size: 0.88rem; font-weight: 500; color: var(--muted); padding: 0; margin-bottom: 0.45rem; }
@@ -257,7 +257,7 @@ textarea { resize: vertical; }
 
 .form-error { color: #ff9aa6; margin: 0; font-size: 0.92rem; }
 
-.success { text-align: center; max-width: 760px; padding: 3rem 2rem; border-color: rgba(245, 196, 107, 0.4); }
+.success { text-align: center; padding: 3rem 2rem; border-color: rgba(245, 196, 107, 0.4); }
 .success svg { width: 54px; height: 54px; fill: var(--gold); filter: drop-shadow(0 0 16px rgba(245, 196, 107, 0.6)); margin-bottom: 0.8rem; }
 .success h3 { font-size: 2rem; margin-bottom: 0.5rem; }
 .success p { color: var(--muted); }
