@@ -131,6 +131,10 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; marg
 
 .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
 
+.hero-quote { margin: 2.6rem auto 0; max-width: 640px; }
+.hero-quote p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--muted); }
+.hero-quote span { display: block; font-style: normal; font-size: 0.92rem; color: var(--gold); margin-top: 0.5rem; }
+
 /* ===== Tlačítka ===== */
 .btn {
   display: inline-block; font: inherit; font-weight: 500; cursor: pointer;
