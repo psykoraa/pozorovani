@@ -291,3 +291,6 @@ textarea { resize: vertical; }
 
 .map-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
 .subhead { font-size: 1.8rem; margin: 3rem 0 1.4rem; }
+
+/* Karty v sekci „Čím budeme pozorovat“: stejné řádky, aby obrázky dalekohledů byly vedle sebe na stejné úrovni */
+#cim .grid.two > .card { display: grid; grid-template-rows: subgrid; grid-row: span 6; row-gap: 0; align-content: start; }
