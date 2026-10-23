@@ -272,9 +272,68 @@
         </article>
 
         <article class="card highlight">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l13-6 2 4L5 21z"/><path d="M16 11l4-2M9 20l-2 2M13 18l2 4"/></svg>
-          </div>
+          <svg class="obj-art" viewBox="0 0 120 80" aria-hidden="true">
+            <defs>
+              <linearGradient id="gTelTube" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#eef0f6"/>
+                <stop offset="1" stop-color="#a9afc4"/></linearGradient>
+              <linearGradient id="gTelDark" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#5b6180"/><stop offset="1" stop-color="#232840"/></linearGradient>
+              <linearGradient id="gTelLeg" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8f96ad"/><stop offset=".45" stop-color="#f1f3f9"/>
+                <stop offset="1" stop-color="#9ea5bb"/></linearGradient>
+              <radialGradient id="gTelHole" cx="60%" cy="50%" r="60%">
+                <stop offset="0" stop-color="#1e2546"/><stop offset="1" stop-color="#05071a"/></radialGradient>
+              <linearGradient id="gTelRim" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#a3aac2" stop-opacity="0"/><stop offset=".5" stop-color="#a3aac2"/>
+                <stop offset="1" stop-color="#a3aac2" stop-opacity="0"/></linearGradient>
+            </defs>
+            <g transform="translate(60 41) scale(.86) translate(-60 -40)">
+            <!-- stativ: zadní noha -->
+            <path d="M61.4 48h1.6l.9 24h-1.4z" fill="url(#gTelLeg)" opacity=".55"/>
+            <!-- odkládací tácek -->
+            <path d="M49.6 62.8L74.6 62.8L62.5 57.6z" fill="#20253b" stroke="#5b6180" stroke-width=".8" stroke-linejoin="round"/>
+            <path d="M54.6 61.6L69.6 61.6L62.5 58.9z" fill="#141a33"/>
+            <!-- stativ: přední nohy -->
+            <path d="M56.4 47.6h2.6l-3.4 7.2h-2.6z" fill="#232840"/>
+            <path d="M53 54.8h2.6l-13.4 22h-2.4z" fill="url(#gTelLeg)"/>
+            <path d="M65 47.6h2.6l3.4 7.2h-2.6z" fill="#232840"/>
+            <path d="M68.4 54.8h2.6l13.8 22h-2.4z" fill="url(#gTelLeg)"/>
+            <circle cx="46.6" cy="66" r="1.1" fill="#232840"/><circle cx="77.6" cy="66" r="1.1" fill="#232840"/>
+            <!-- protizávaží -->
+            <line x1="59" y1="41" x2="45.5" y2="56.5" stroke="#cfd4e2" stroke-width="1.3" stroke-linecap="round"/>
+            <rect x="-2.2" y="-3.8" width="4.4" height="7.6" rx="1" fill="url(#gTelDark)" transform="translate(48.6 53) rotate(41)"/>
+            <!-- montáž -->
+            <rect x="55" y="45.6" width="14" height="3" rx="1.2" fill="#232840"/>
+            <rect x="56.5" y="37.5" width="11" height="9" rx="2.2" fill="url(#gTelDark)"/>
+            <rect x="-4.5" y="-4" width="9" height="8" rx="1.8" fill="url(#gTelDark)" transform="translate(59 37) rotate(28)"/>
+            <line x1="67" y1="42.5" x2="78" y2="46" stroke="#cfd4e2" stroke-width=".9" stroke-linecap="round"/>
+            <!-- tubus Newtonova dalekohledu -->
+            <g transform="translate(62 26) rotate(28)">
+              <rect x="-14" y="7" width="28" height="2.6" rx="1" fill="#232840"/>
+              <rect x="-21.5" y="-12.5" width="5" height="5.5" rx=".8" fill="#232840"/>
+              <rect x="-20.8" y="-16.4" width="3.6" height="4.4" rx=".6" fill="url(#gTelDark)"/>
+              <rect x="-20.8" y="-14.4" width="3.6" height=".9" fill="#f5c46b" opacity=".8"/>
+              <rect x="-13.5" y="-9.2" width="2" height="2.5" fill="#232840"/>
+              <rect x="-5" y="-9.2" width="2" height="2.5" fill="#232840"/>
+              <rect x="-15" y="-13" width="13.5" height="4" rx="1.6" fill="url(#gTelDark)"/>
+              <rect x="-30" y="-7.5" width="58.5" height="15" fill="url(#gTelTube)"/>
+              <rect x="-30" y="-6" width="58.5" height="1.4" fill="#fff" opacity=".8"/>
+              <!-- objímky a zadní víko (zakřivené jako válec) -->
+              <path d="M-12 -8.6L-8.8 -8.6A3.4 8.6 0 0 1 -8.8 8.6L-12 8.6A3.4 8.6 0 0 0 -12 -8.6z" fill="url(#gTelDark)"/>
+              <path d="M9 -8.6L12.2 -8.6A3.4 8.6 0 0 1 12.2 8.6L9 8.6A3.4 8.6 0 0 0 9 -8.6z" fill="url(#gTelDark)"/>
+              <path d="M25 -8.1L28 -8.1A3.2 8.1 0 0 1 28 8.1L25 8.1A3.2 8.1 0 0 0 25 -8.1z" fill="url(#gTelDark)"/>
+              <!-- přední obruba a vstupní otvor -->
+              <path d="M-31 -8.4L-26.5 -8.4A3.4 8.4 0 0 1 -26.5 8.4L-31 8.4z" fill="url(#gTelDark)"/>
+              <ellipse cx="-31" cy="0" rx="3.4" ry="8.4" fill="#4a5070"/>
+              <path d="M-31 -8.12A3.12 8.12 0 0 0 -31 8.12" fill="none" stroke="url(#gTelRim)" stroke-width=".55"/>
+              <ellipse cx="-31" cy="0" rx="2.7" ry="7.1" fill="url(#gTelHole)"/>
+              <g stroke="#9aa3c7" stroke-width=".35" opacity=".75">
+                <line x1="-31" y1="-7.1" x2="-31" y2="7.1"/><line x1="-33.7" y1="0" x2="-28.3" y2="0"/></g>
+              <ellipse cx="-31" cy="0" rx=".9" ry="1.7" fill="#b8bfd6"/>
+            </g>
+            </g>
+          </svg>
           <h3>Dva Newtonovy dalekohledy</h3>
           <p class="muted">zrcadlové reflektory</p>
           <ul class="checklist">
