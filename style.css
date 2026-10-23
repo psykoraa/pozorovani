@@ -289,6 +289,5 @@ textarea { resize: vertical; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-.scope-img { display: block; width: 100%; height: auto; max-height: 260px; object-fit: contain; margin-top: 1rem; border-radius: 8px; background: #fff; }
 .map-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
 .subhead { font-size: 1.8rem; margin: 3rem 0 1.4rem; }
